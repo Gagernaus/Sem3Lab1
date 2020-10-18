@@ -115,6 +115,7 @@ int main() {
     if (ars1.get(0) != 4)
         printf("Set failed\n");
     else printf("Set success\n");
+
     ars3->~Sequence();
     ars4->~Sequence();
     ars5->~Sequence();

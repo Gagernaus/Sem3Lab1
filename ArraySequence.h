@@ -162,6 +162,19 @@ public:
         this->items->arrayOut();
     }
 
+    void outTo(unsigned int num) const {
+        if (num < 0)
+            throw -1;
+        if (num > items->getSize()) {
+            this->out();
+            return;
+        } else if (num <= items->getSize()) {
+            for (unsigned int i = 0; i < num; i++)
+                std::cout << items->getElem(i) << " ";
+            std::cout << "\n";
+        }
+    }
+
 };
 
 

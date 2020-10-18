@@ -9,7 +9,7 @@ class LinkedSequence : public Sequence<T> {
 private:
     LinkedList<T> *items;
 public:
-    LinkedSequence(T *items,    int count) {
+    LinkedSequence(T *items, int count) {
         this->items = new LinkedList<T>(items, count);
     }
 
@@ -25,7 +25,7 @@ public:
         this->items->~LinkedList();
     }
 
-    void setElem(   int index, T value) {
+    void setElem(int index, T value) {
         if (index < 0 || index >= this->items->getSize())
             throw -1;
         else {
@@ -33,7 +33,7 @@ public:
         }
     }
 
-       int getLength() const {
+    int getLength() const {
         return this->items->getSize();
     }
 
@@ -53,7 +53,7 @@ public:
         }
     }
 
-    T get(const    int index) const {
+    T get(const int index) const {
         if (index < 0 || index > this->items->getSize() - 1)
             throw -1;
         else {
@@ -61,7 +61,7 @@ public:
         }
     }
 
-    LinkedSequence<T> *getSubsequence(const    int start, const    int end) const {
+    LinkedSequence<T> *getSubsequence(const int start, const int end) const {
         LinkedSequence<T> *result = new LinkedSequence<T>();
         result->items = this->items->getSubList(start, end);
         return result;
@@ -75,7 +75,7 @@ public:
         this->items->prepend(value);
     }
 
-    void insertAt(   int index, T value) {
+    void insertAt(int index, T value) {
         if (index < 0 || index > this->items->getSize())
             throw -1;
         else {
@@ -83,7 +83,7 @@ public:
         }
     }
 
-    void removeAt(   int index) {
+    void removeAt(int index) {
         if (index < 0 || index > this->items->getSize())
             throw -1;
         else {
@@ -93,7 +93,7 @@ public:
 
     void remove(T value) {
         bool flag = false;
-           int i;
+        int i;
         for (i = 0; i < this->items->getLength(); i++) {
             if (value == this->items->get(i)) {
                 flag = true;
@@ -107,9 +107,9 @@ public:
 
     Sequence<T> *concat(Sequence<T> *other) {
         T *arr = new T[this->items->getLength() + other->getLength()];
-        for (   int i = 0; i < this->getLength(); i++)
+        for (int i = 0; i < this->getLength(); i++)
             arr[i] = this->items->get(i);
-        for (   int i = 0; i < other->getLength(); i++)
+        for (int i = 0; i < other->getLength(); i++)
             arr[i + this->getLength()] = other->get(i);
         Sequence<T> *result = new LinkedSequence<T>(arr, this->items->getLength() + other->getLength());
         delete[](arr);
@@ -118,7 +118,7 @@ public:
 
     LinkedSequence<T> *copy() {
         T *arr = new T[this->items->getLength()];
-        for (   int i = 0; i < this->items->getLength(); i++)
+        for (int i = 0; i < this->items->getLength(); i++)
             arr[i] = this->items->get(i);
         LinkedSequence<T> *result = new LinkedSequence<T>(arr, this->items->getLength());
         delete[](arr);
@@ -127,6 +127,19 @@ public:
 
     void out() const {
         this->items->listOut();
+    }
+
+    void outTo(unsigned int num) const {
+        if (num < 0)
+            throw -1;
+        if (num > items->getSize()) {
+            this->out();
+            return;
+        } else if (num <= items->getSize()) {
+            for (unsigned int i = 0; i < num; i++)
+                std::cout << items->get(i) << " ";
+            std::cout << "\n";
+        }
     }
 
 };

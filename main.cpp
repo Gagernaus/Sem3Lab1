@@ -94,7 +94,7 @@ int main() {
         if (amount < maxAmount) {
             seq->out();
         } else {
-
+            seq->outTo(maxAmount);
         }
         delete (seq);
     }

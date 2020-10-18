@@ -18,6 +18,8 @@ public:
 public:
     virtual void out() const = 0;
 
+    virtual void outTo(unsigned int num) const = 0;
+
     virtual void setElem(int index, T value) = 0;
 
     virtual void append(T value) = 0;
